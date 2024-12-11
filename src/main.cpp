@@ -7,13 +7,15 @@ int main()
   cerr << unitbuf;
 
   // Uncomment this block to pass the first stage
-
-  cout << "$ ";
-  set<string> st;
-  string input;
-  getline(cin, input);
-  if (!st.count(input))
+  while (1)
   {
-    cout << input << ": " << "not found" << endl;
+    cout << "$ ";
+    set<string> st;
+    string input;
+    getline(cin, input);
+    if (!st.count(input))
+    {
+      cout << input << ": " << "not found" << endl;
+    }
   }
 }
