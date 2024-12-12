@@ -33,6 +33,7 @@ int main()
   // Flush after every cout / std:cerr
   cout << unitbuf;
   cerr << unitbuf;
+
   command *bash = new command();
   bash->addCommand("echo", echo);
   bash->addCommand("exit", myExit);

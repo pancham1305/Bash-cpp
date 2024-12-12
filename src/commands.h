@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+
 int echo(std::vector<std::string> v)
 {
     for (int i = 1; i < v.size(); i++)
@@ -23,10 +24,18 @@ int myExit(std::vector<std::string> v)
 
 int type(std::vector<std::string> v)
 {
-    if (v.size() > 2)
+
+    if (v.size() == 2)
+    {
+        std::cout << v[0] << " is " << v[1] << std::endl;
+    }
+    else if (v.size() == 1)
+    {
+        std::cout << v[0] << " is a shell builtin" << std::endl;
+    }
+    else
     {
         return 0;
     }
-    std::cout << v[1] << " is a shell builtin" << std::endl;
     return 1;
 }
