@@ -1,4 +1,7 @@
 #include <bits/stdc++.h>
+#include "command.h"
+#include "commands.h"
+#include "error.h"
 using namespace std;
 
 vector<string> split(string input)
@@ -30,36 +33,22 @@ int main()
   // Flush after every cout / std:cerr
   cout << unitbuf;
   cerr << unitbuf;
-
-  // Uncomment this block to pass the first stage
-  set<string> st;
-  st.insert("exit");
-  st.insert("echo");
+  command *bash = new command();
+  bash->addCommand("echo", echo);
+  bash->addCommand("exit", myExit);
+  bash->addCommand("type", type);
   while (1)
   {
     cout << "$ ";
     string input;
     getline(cin, input);
     vector<string> v = split(input);
-    if (!st.count(v[0]))
+    switch (bash->executeCommand(v))
     {
-      cout << input << ": " << "not found" << endl;
-    }
-    else if (v[0] == "echo")
-    {
-      for (int i = 1; i < v.size(); i++)
-      {
-        cout << v[i] << ((i == v.size() - 1) ? "" : " ");
-      }
-      cout << endl;
-    }
-    else
-    {
+    case 0:
+      error(v);
       break;
     }
-    // else
-    // {
-    //   break;
-    // }
   }
+  return 0;
 }
