@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include <filesystem>
+namespace fs = std::filesystem;
 int echo(std::vector<std::string> v)
 {
     for (int i = 1; i < v.size(); i++)
@@ -37,5 +38,11 @@ int type(std::vector<std::string> v)
     {
         return 0;
     }
+    return 1;
+}
+
+int pwd(vector<string> v)
+{
+    cout << fs::current_path().string() << endl;
     return 1;
 }

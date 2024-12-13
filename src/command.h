@@ -1,11 +1,9 @@
-// map of commands to functions and also using class to make it modular
 #include <string>
 #include <functional>
 #include <map>
 #include <vector>
 #include <filesystem>
 #include <iostream>
-#include <fstream>
 using namespace std;
 namespace fs = std::filesystem;
 class command
@@ -37,20 +35,14 @@ public:
         {
             envVars.push_back(s);
         }
-        // for (auto i : envVars)
-        // {
-        //     cout << i << " ";
-        // }
-        // cout << endl;
+
         for (auto &path : envVars)
         {
             int cnt = 0;
-            // cout << path << ": ";
+
             if (path.substr(0, 4) == "/tmp")
             {
-                // cout << "Executing...." << endl;
-                for (int i = 0; i < 10000000; i++)
-                    ;
+                sleep(1);
             }
             for (auto file : (fs::recursive_directory_iterator(path)))
             {
@@ -61,24 +53,8 @@ public:
                     continue;
                 }
                 externalCommands[tmp] = file.path().string();
-                // if (path.substr(0, 4) == "/tmp")
-                // {
-                //     // cout << tmp << endl;
-                //     string cmd = tmp + " alice";
-                //     system(cmd.c_str());
-                //     cout << (externalCommands.find(tmp) != externalCommands.end()) << endl;
-                // }
             }
-
-            // cout << cnt << endl;
         }
-        // cout << externalCommands["cat"] << endl;
-        // cout << endl;
-        // for (auto i : externalCommands)
-        // {
-        //     cout << i.first << " ";
-        // }
-        // cout << endl;
     };
     void addCommand(std::string s, std::function<int(std::vector<std::string>)> f)
     {
@@ -88,13 +64,6 @@ public:
     int executeCommand(std::vector<std::string> &v)
     {
         std::string c = v[0];
-        // cout << c << endl;
-        // if (externalCommands.find(c) != externalCommands.end())
-        // {
-        //     cout << ":')" << endl;
-        // }
-        // string s = "ls /tmp/pineapple";
-        // system(s.c_str());
         if (c == "type")
         {
             if (shellBuiltins.find(v[1]) != shellBuiltins.end())
