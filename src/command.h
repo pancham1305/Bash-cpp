@@ -82,6 +82,13 @@ public:
         }
         if (shellBuiltins.find(c) != shellBuiltins.end())
         {
+            if (c == "cd")
+            {
+                if (!(fs::is_directory(v[1])))
+                {
+                    return 0;
+                }
+            }
             std::function<int(std::vector<std::string>)> f = shellBuiltins[c];
 
             int ret = f(v);

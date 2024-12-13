@@ -43,6 +43,13 @@ int type(std::vector<std::string> v)
 
 int pwd(vector<string> v)
 {
-    cout << fs::current_path().string() << endl;
+    std::cout << fs::current_path().string() << std::endl;
+    return 1;
+}
+
+int cd(vector<string> v)
+{
+    fs::path dir = v[1];
+    fs::current_path(dir);
     return 1;
 }

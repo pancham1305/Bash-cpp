@@ -39,6 +39,7 @@ int main()
   bash->addCommand("exit", myExit);
   bash->addCommand("type", type);
   bash->addCommand("pwd", pwd);
+  bash->addCommand("cd", cd);
   while (1)
   {
     cout << "$ ";
