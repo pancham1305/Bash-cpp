@@ -84,7 +84,7 @@ public:
         {
             if (c == "cd")
             {
-                if (!(fs::is_directory(v[1])))
+                if (!(fs::is_directory(v[1])) && v[1][0] != '~')
                 {
                     return 0;
                 }

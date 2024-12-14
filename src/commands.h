@@ -49,6 +49,15 @@ int pwd(vector<string> v)
 
 int cd(vector<string> v)
 {
+
+    if (v[1][0] == '~')
+    {
+        string s = v[1].substr(1);
+        string tmp = getenv("HOME");
+        tmp.append(s);
+        v[1] = tmp;
+    }
+    // std::cout << v[1] << std::endl;
     fs::path dir = v[1];
     fs::current_path(dir);
     return 1;
