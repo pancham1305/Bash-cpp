@@ -56,6 +56,15 @@ vector<string> split(string input)
             }
             else
             {
+                // if (input[i] == '\\')
+                // {
+                //     if (input[i + 1] == ' ')
+                //     {
+                //         s.push_back('#');
+                //         i++;
+                //     }
+                //     continue;
+                // }
                 s.push_back(input[i]);
             }
         }

@@ -8,10 +8,25 @@ int echo(std::vector<std::string> v)
 {
     for (int i = 1; i < v.size(); i++)
     {
+
         if (v[i][0] == '\'' || v[i][0] == '\"')
         {
             v[i].erase(v[i].begin());
             v[i].pop_back();
+        }
+        else
+        {
+            if (v[i].back() == '\\')
+            {
+                v[i].pop_back();
+            }
+            for (int j = 0; j < v[i].size(); j++)
+            {
+                if (v[i][j] == '\\')
+                {
+                    v[i].erase(v[i].begin() + j);
+                }
+            }
         }
         std::cout << (v[i]) << ((i == v.size() - 1) ? "" : " ");
     }
