@@ -1,7 +1,7 @@
 {
-  "files.associations": {
-    "*.embeddedhtml": "html",
-    "*.ejs": "html",
-    "ostream": "cpp"
-  }
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.ejs": "html",
+        "iomanip": "cpp"
+    }
 }

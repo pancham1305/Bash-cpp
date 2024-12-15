@@ -2,12 +2,18 @@
 #include <vector>
 #include <string>
 #include <filesystem>
+#include "util.h"
 namespace fs = std::filesystem;
 int echo(std::vector<std::string> v)
 {
     for (int i = 1; i < v.size(); i++)
     {
-        std::cout << v[i] << ((i == v.size() - 1) ? "" : " ");
+        if (v[i][0] == '\'' || v[i][0] == '\"')
+        {
+            v[i].erase(v[i].begin());
+            v[i].pop_back();
+        }
+        std::cout << (v[i]) << ((i == v.size() - 1) ? "" : " ");
     }
     std::cout << std::endl;
     return 1;
@@ -49,7 +55,6 @@ int pwd(vector<string> v)
 
 int cd(vector<string> v)
 {
-
     if (v[1][0] == '~')
     {
         string s = v[1].substr(1);

@@ -2,31 +2,8 @@
 #include "command.h"
 #include "commands.h"
 #include "error.h"
+#include "util.h"
 using namespace std;
-
-vector<string> split(string input)
-{
-  vector<string> v;
-  string s;
-  int n = input.size();
-  for (int i = 0; i < n; i++)
-  {
-    if (input[i] == ' ')
-    {
-      v.push_back(s);
-      s.clear();
-    }
-    else
-    {
-      s.push_back(input[i]);
-    }
-  }
-  if (!s.empty())
-  {
-    v.push_back(s);
-  }
-  return v;
-}
 
 int main()
 {
@@ -46,10 +23,18 @@ int main()
     string input;
     getline(cin, input);
     vector<string> v = split(input);
-    switch (bash->executeCommand(v))
+    vector<string> t = trim(v);
+
+    // for (auto i : t)
+    // {
+    //   cout << i << "|";
+    // }
+    // cout << endl;
+    // cout << "Printing vector now::" << endl;
+    switch (bash->executeCommand(t))
     {
     case 0:
-      error(v);
+      error(t);
       break;
     }
   }
